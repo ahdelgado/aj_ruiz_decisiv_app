@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class ShortenUrlTest < ActiveSupport::TestCase
+class UrlTest < ActiveSupport::TestCase
   def setup
-    @url = ShortenUrl.new(long_url: "www.example.com", short_url: "example")
+    @url = Url.new(long_url: "www.example.com", short_url: "example")
   end
 
   test "should be valid" do

@@ -9,13 +9,9 @@ class Url < ActiveRecord::Base
                         
   validates :long_url,  presence: true, uniqueness: { case_sensitive: false },
                     format: { with: VALID_URL_REGEX }
-                    
-  validate :long_url_is_valid
-
-  
+                      
   validates :short_url, uniqueness: { case_sensitive: false },
                     length: { maximum: 10 },
                     format: { without: BAD_WORDS_REGEX }
-                    
-  validate :short_url_is_valid
+        
 end
