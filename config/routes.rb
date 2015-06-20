@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root             'urls#index'
   get 'new'     => 'urls#new'
   get 'show'    => 'urls#show'
+  resources        :urls
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
