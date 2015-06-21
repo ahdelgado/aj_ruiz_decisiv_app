@@ -1,6 +1,6 @@
 class UrlsController < ApplicationController
   def index
-    @urls = Url.all 
+    @urls = Url.paginate(page: params[:page])
   end
 
   def new
