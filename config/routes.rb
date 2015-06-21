@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  root             'urls#index'
-  get 'new'     => 'urls#new'
+  root             'urls#new'
+  get 'index'   => 'urls#index'
   get 'show'    => 'urls#show'
   resources        :urls
 

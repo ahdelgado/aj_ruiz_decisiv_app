@@ -22,6 +22,9 @@ class UrlsController < ApplicationController
   end
   
   def destroy
+    Url.find(params[:id]).destroy
+    flash[:success] = "URL deleted"
+    redirect_to root_path
   end
   
   private

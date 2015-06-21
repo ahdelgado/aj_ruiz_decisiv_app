@@ -12,6 +12,6 @@ class Url < ActiveRecord::Base
                       
   validates :short_url, uniqueness: { case_sensitive: false },
                     length: { maximum: 10 },
-                    format: { without: BAD_WORDS_REGEX }
+                    format: { without: BAD_WORDS_REGEX }, presence: true
         
 end
