@@ -17,7 +17,7 @@ class Url < ActiveRecord::Base
     url.long_url = url.long_url.gsub(/[0]/, 'O')
     
     
-    short_url = Base64.urlsafe_encode64(long_url)[5..12]
+    short_url = Base64.urlsafe_encode64(long_url)[8..15]
     while short_url.scan(/foo|bar/).size > 0
       short_url = clean(short_url)
     end
