@@ -12,7 +12,7 @@ class UrlsController < ApplicationController
   end
   
   def create
-    @url = Url.new(url_params)
+    @url = Url.generate(url_params[:long_url])
     if @url.save
       flash[:success] = "Short URL generated!"
       redirect_to @url
@@ -20,17 +20,17 @@ class UrlsController < ApplicationController
       render 'new'
     end
   end
-  
+      
   def destroy
     Url.find(params[:id]).destroy
     flash[:success] = "URL deleted"
-    redirect_to root_path
+    redirect_to index_path
   end
   
   private
 
     def url_params
-      params.require(:url).permit(:long_url, :short_url)
+      params.require(:url).permit(:long_url)
     end
 
 end

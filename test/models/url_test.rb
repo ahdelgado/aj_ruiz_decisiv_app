@@ -9,11 +9,8 @@ class UrlTest < ActiveSupport::TestCase
     assert @url.valid?
   end
   
-    test "should accomodate transcription ambiguities" do
-    # Add later
-  end
-  
-    test "should not produce duplicate short URLs" do
+
+  test "should not produce duplicate short URLs" do
       duplicate_url = @url.dup
       duplicate_url.short_url = @url.short_url.upcase
       @url.save
@@ -23,21 +20,8 @@ class UrlTest < ActiveSupport::TestCase
     test "should not produce two short URLs that differ by only one character" do
     # Add later
   end
-  
-    test "should accept short_url with no inappropriate words" do
-    @url.short_url = "test"
-    assert @url.valid?, "#{@url.inspect} should be valid"
-  end
-  
-    test "should catch short_url with inappropriate words" do
-    @url.short_url = "FOO"
-    assert_not @url.valid?, "#{@url.inspect} should be invalid"
-    
-    @url.short_url = "barfoo"
-    assert_not @url.valid?, "#{@url.inspect} should be invalid"    
-  end
-  
-    test "should accept long_url if valid" do
+      
+    test "should accept long_url if valid URL format" do
     valid_urls = %w[userexample.com USERfoo.COM ERfoo.bar.org
                          first.lastfoo.net aj-scarlet.edu]
     
@@ -47,7 +31,7 @@ class UrlTest < ActiveSupport::TestCase
     end
   end
   
-    test "should reject long_url if invalid" do
+    test "should reject long_url if invalid URL format" do
     invalid_urls = %w[userexample,com user_at_foo,org user.name@example.
                            foo@bar_baz@com foo@bar+baz,org]
                            
@@ -58,14 +42,9 @@ class UrlTest < ActiveSupport::TestCase
     
   end
   
-    test "should give user a warning if long_url is nil" do
+    test "should reject long_url if nil" do
       @url.long_url = nil
       assert_not @url.valid?
   end
-  
-      test "should not produce short_url longer than 10 characters" do
-      @url.short_url = "a" * 11
-      assert_not @url.valid?
-  end
-  
+    
 end
