@@ -9,7 +9,6 @@ class UrlTest < ActiveSupport::TestCase
     assert @url.valid?
   end
   
-
   test "should not produce duplicate short URLs" do
       duplicate_url = @url.dup
       duplicate_url.short_url = @url.short_url.upcase
@@ -17,8 +16,13 @@ class UrlTest < ActiveSupport::TestCase
       assert_not duplicate_url.valid?
   end
   
-    test "should not produce two short URLs that differ by only one character" do
-    # Add later
+    test "should not produce short URL with inappropriate words" do
+      @url.short_url = "foobar"
+            
+      while @url.short_url.scan(/foo|bar/).size > 0
+        @url.short_url = Url.clean(@url.short_url)
+      end
+      assert @url.short_url.scan(/foo|bar/).size == 0
   end
       
     test "should accept long_url if valid URL format" do
